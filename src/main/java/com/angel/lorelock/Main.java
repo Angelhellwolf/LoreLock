@@ -10,8 +10,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
-//    public static Config config;
-//    public static FileConfiguration config;
     private static Config config;
     public static Config getPluginConfig() {
         return config;
