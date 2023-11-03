@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 public class LoreAntiDrop extends Commons implements Listener {
     @EventHandler
     public void onDrop(PlayerDropItemEvent event) {
-        if (event.getPlayer().hasPermission("lorelock.bypass")) return;
+        if (event.getPlayer().hasPermission("lorelock.bypass.Drop")) return;
         if (!HasLore.hasLore(event.getItemDrop().getItemStack())) return;
         event.setCancelled(true);
         event.getPlayer().sendMessage(replace.replace(rollString.rollString(config.getAntiLoreMessages())));

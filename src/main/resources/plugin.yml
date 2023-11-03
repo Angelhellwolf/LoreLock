@@ -4,4 +4,17 @@ main: com.angel.lorelock.LoreLock
 api-version: '1.18'
 commands:
   lorelock:
-    description: LoreLock 插件的主要指令
+    description: LoreLock 插件主指令
+permissions:
+  lorelock.reload:
+    description: 允许玩家重载LoreLock插件的配置文件
+    default: op
+  lorelock.bypass.Drop:
+    description: 允许玩家绕过LoreLock插件的掉落物品限制
+    default: false
+  lorelock.bypass.Inventory:
+    description: 允许玩家绕过LoreLock插件的背包物品限制
+    default: false
+  lorelock.bypass.Dead:
+    description: 允许玩家在死亡时绕过LoreLock插件的物品掉落限制
+    default: false

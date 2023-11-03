@@ -22,7 +22,7 @@ public class LoreInventory extends Commons implements Listener {
         int hotBarButton = event.getHotbarButton();
         Inventory clickedInventory = event.getClickedInventory();
         Player player = (Player) event.getWhoClicked();
-        if (player.hasPermission("lorelock.bypass")) return;
+        if (player.hasPermission("lorelock.bypass.Inventory")) return;
         if (event.getInventory().getType() != InventoryType.CRAFTING && event.getInventory().getType() != InventoryType.MERCHANT) {
             if (hotBarButton >= 0 && clickedInventory != null) {
                 ItemStack itemTemp = player.getInventory().getItem(event.getHotbarButton());

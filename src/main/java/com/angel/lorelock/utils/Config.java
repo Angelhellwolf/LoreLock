@@ -2,6 +2,8 @@ package com.angel.lorelock.utils;
 
 import com.angel.lorelock.Main;
 import java.util.List;
+
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class Config {
@@ -31,6 +33,7 @@ public class Config {
         if (getConfig().isBoolean("DeathDrop")) {
             return getConfig().getBoolean("DeathDrop");
         } else {
+            Bukkit.getConsoleSender().sendMessage("请检查Config文件中的 DeathDrop，你的DeathDrop似乎存在问题");
             return false;
         }
     }
@@ -41,6 +44,9 @@ public class Config {
 
     public List<String> getAntiLoreMessages() {
         return getConfig().getStringList("AntiLore.message");
+    }
+    public List<String> getDeadMessages() {
+        return getConfig().getStringList("Dead.message");
     }
 
     public void reload() {

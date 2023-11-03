@@ -11,12 +11,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class DeadDrop implements Listener {
     RollString rollString = Commons.rollString;
@@ -32,6 +30,7 @@ public class DeadDrop implements Listener {
 
     @EventHandler
     public void getDeathDropWorlds(PlayerDeathEvent event) {
+        if(config.isDeathDropEnabled()) return;
         World world = event.getEntity().getWorld();
         List<String> deadDropWorlds = config.getDeathDropWorlds();
         if (deadDropWorlds.contains(world.getName())) {
@@ -40,6 +39,7 @@ public class DeadDrop implements Listener {
     }
 
     public void dropItem(Player player) {
+        if (player.hasPermission("lorelock.bypass.Dead")) return;
         PlayerInventory inventory = player.getInventory();
         List<ItemStack> itemList = new ArrayList<>(Arrays.asList(inventory.getContents()));
         ItemStack[] itemStack =  itemList.toArray(new ItemStack[0]);
@@ -61,6 +61,7 @@ public class DeadDrop implements Listener {
             }
         }
         inventory.setArmorContents(armorContents);
+        player.sendMessage(replace.replace(rollString.rollString(config.getDeadMessages())));
     }
 
 }
