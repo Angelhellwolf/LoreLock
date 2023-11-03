@@ -2,6 +2,7 @@ package com.angel.lorelock.event;
 
 import com.angel.lorelock.utils.Commons;
 import com.angel.lorelock.utils.HasLore;
+import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -13,10 +14,12 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import javax.print.DocFlavor;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -39,6 +42,20 @@ public class LoreInventory extends Commons implements Listener {
                 break;
             }
         }
+    }
+
+
+    //AI磁石炒饭
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        ItemStack item = player.getItemInHand();
+        if (item.getType() != Material.COMPASS) return;
+        if (!HasLore.hasLore(item)) return;
+        if (player.hasPermission("lorelock.bypass.Compass")) return;
+        if (event.getClickedBlock() != null && event.getClickedBlock().getType() != Material.LODESTONE) return;
+        event.getPlayer().sendMessage("你不能磁化她");
+        event.setCancelled(true);
     }
 
 
@@ -66,6 +83,7 @@ public class LoreInventory extends Commons implements Listener {
             send(event.getPlayer());
         }
     }
+
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
