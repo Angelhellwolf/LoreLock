@@ -1,0 +1,15 @@
+#作者QQ： 2076049239
+#如果lore中具有 任务道具 则该物品将无法与盔甲架 物品展示栏 容器 交互
+Lore: "任务道具"
+#是否启用死亡掉落
+DeathDrop: true
+#死亡掉落的世界
+DeathDropWorld:
+  World:
+    - "survivalWorld"
+    - "TestWorld"
+AntiLore:
+  message:
+    - "&c该物品不能离开你"
+    - "&c这个物品与您深度灵魂绑定"
+
