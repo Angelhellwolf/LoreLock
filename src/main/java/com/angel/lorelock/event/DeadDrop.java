@@ -30,7 +30,7 @@ public class DeadDrop implements Listener {
 
     @EventHandler
     public void getDeathDropWorlds(PlayerDeathEvent event) {
-        if(config.isDeathDropEnabled()) return;
+        if(!config.isDeathDropEnabled()) return;
         World world = event.getEntity().getWorld();
         List<String> deadDropWorlds = config.getDeathDropWorlds();
         if (deadDropWorlds.contains(world.getName())) {
