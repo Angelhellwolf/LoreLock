@@ -2,3 +2,6 @@ name: LoreLock
 version: '${version}'
 main: com.angel.lorelock.LoreLock
 api-version: '1.18'
+commands:
+  lorelock:
+    description: LoreLock 插件的主要指令

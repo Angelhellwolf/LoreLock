@@ -1,4 +1,4 @@
-package com.angel.lorelock.method;
+package com.angel.lorelock.utils;
 
 public class Replace {
     public String replace(String input) {

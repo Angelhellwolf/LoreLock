@@ -1,23 +1,31 @@
 package com.angel.lorelock;
 
+import com.angel.lorelock.event.DeadDrop;
 import com.angel.lorelock.event.LoreAntiDrop;
 import com.angel.lorelock.event.LoreInventory;
-import com.angel.lorelock.libs.Config;
+import com.angel.lorelock.utils.Commands;
+import com.angel.lorelock.utils.Commons;
+import com.angel.lorelock.utils.Config;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.checkerframework.common.returnsreceiver.qual.This;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 
 public class Main extends JavaPlugin {
 //    public static Config config;
-    public static FileConfiguration config;
+//    public static FileConfiguration config;
+    private static Config config;
+    public static Config getPluginConfig() {
+        return config;
+    }
+    DeadDrop deadDrop = new DeadDrop();
+
 
     public void Enable() {
-        config = getConfig();
+        this.getCommand("lorelock").setExecutor(new Commands(this));
+        this.getCommand("lorelock").setTabCompleter(new Commands(this));
+        deadDrop.KEEP_INVENTORY();
+        config = new Config(this);
+        Commons.config = config;
+        Bukkit.getPluginManager().registerEvents(new DeadDrop(), this);
         Bukkit.getPluginManager().registerEvents(new LoreAntiDrop(), this);
         Bukkit.getPluginManager().registerEvents(new LoreInventory(), this);
         saveDefaultConfig();

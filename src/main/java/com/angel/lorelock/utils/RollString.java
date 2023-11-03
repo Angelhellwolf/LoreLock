@@ -1,4 +1,4 @@
-package com.angel.lorelock.method;
+package com.angel.lorelock.utils;
 
 import java.util.List;
 

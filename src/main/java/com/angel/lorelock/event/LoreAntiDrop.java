@@ -1,19 +1,14 @@
 package com.angel.lorelock.event;
 
-import com.angel.lorelock.libs.Config;
-import com.angel.lorelock.method.Replace;
-import com.angel.lorelock.method.HasLore;
-import com.angel.lorelock.method.RollString;
+import com.angel.lorelock.utils.Commons;
+import com.angel.lorelock.utils.HasLore;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
-import java.util.List;
 
-public class LoreAntiDrop implements Listener {
-    RollString rollString = new RollString();
-    Replace replace = new Replace();
-    Config config = new Config();
+
+public class LoreAntiDrop extends Commons implements Listener {
     @EventHandler
     public void onDrop(PlayerDropItemEvent event) {
         if (event.getPlayer().hasPermission("lorelock.bypass")) return;
