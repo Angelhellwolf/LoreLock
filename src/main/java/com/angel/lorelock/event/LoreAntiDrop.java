@@ -19,7 +19,6 @@ public class LoreAntiDrop extends Commons implements Listener {
     public void onDrop(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
         if (player.hasPermission("lorelock.bypass.Drop")) return;
-
         ItemStack itemToDrop = event.getItemDrop().getItemStack();
         if (!HasLore.hasLore(itemToDrop)) return;
 

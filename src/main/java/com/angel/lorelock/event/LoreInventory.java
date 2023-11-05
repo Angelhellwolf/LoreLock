@@ -37,7 +37,7 @@ public class LoreInventory extends Commons implements Listener {
         CraftingInventory craftingInventory = event.getInventory();
         ItemStack[] ingredients = craftingInventory.getMatrix();
         for (ItemStack ingredient : ingredients) {
-            if (ingredient != null && HasLore.hasLore(ingredient)) {
+            if (ingredient != null && (HasLore.hasRPGItem(ingredient) || HasLore.hasLore(ingredient))) {
                 event.getInventory().setResult(null);
                 break;
             }
@@ -103,7 +103,7 @@ public class LoreInventory extends Commons implements Listener {
         // 不要在点了
         if (hotBarButton >= 0 && clickedInventoryOpt.isPresent()) {
             ItemStack itemTemp = player.getInventory().getItem(hotBarButton);
-            if (HasLore.hasLore(itemTemp)) {
+            if (HasLore.hasLore(itemTemp) || HasLore.hasRPGItem(itemTemp)) {
                 event.setCancelled(true);
                 send(player);
             }
@@ -115,7 +115,7 @@ public class LoreInventory extends Commons implements Listener {
         // 数字键监测
         if (clickedInventoryOpt.filter(inv -> inv.getType() == InventoryType.PLAYER).isPresent()
                 || clickType == ClickType.NUMBER_KEY || clickType == ClickType.CONTROL_DROP) {
-            if (HasLore.hasLore(event.getCurrentItem())) {
+            if (HasLore.hasLore(event.getCurrentItem()) || HasLore.hasRPGItem(event.getCurrentItem())) {
                 event.setCancelled(true);
             }
         }

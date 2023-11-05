@@ -15,6 +15,24 @@ public class HasLore extends Config{
     public static boolean hasLore(ItemStack item) {
         return ItemLoreCheck(item);
     }
+    public static boolean hasRPGItem(ItemStack RPGitem){
+        return ItemRPGCheck(RPGitem);
+    }
+
+    private static boolean ItemRPGCheck(ItemStack RPGitem) {
+        String search = Commons.config.getRPItem();
+        if (RPGitem != null && RPGitem.hasItemMeta()) {
+            ItemMeta meta = RPGitem.getItemMeta();
+            if (meta.hasLore()) {
+                for (String lore : meta.getLore()) {
+                    if (lore.contains(search)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
     private static boolean ItemLoreCheck(ItemStack item) {
         String search = Commons.config.getLore();

@@ -1,6 +1,7 @@
 package com.angel.lorelock.utils;
 
 import com.angel.lorelock.Main;
+
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -18,8 +19,8 @@ public class Config {
         return input.replace("&", "§");
     }
 
-    private String NoNull(String input){
-        if(input != null){
+    private String NoNull(String input) {
+        if (input != null) {
             return input;
         }
         return "-1";
@@ -27,6 +28,10 @@ public class Config {
 
     public String getLore() {
         return replace(NoNull(getConfig().getString("Lore")));
+    }
+
+    public String getRPItem() {
+        return replace(NoNull(getConfig().getString("RPGItem")));
     }
 
     public boolean isDeathDropEnabled() {
@@ -45,6 +50,7 @@ public class Config {
     public List<String> getAntiLoreMessages() {
         return getConfig().getStringList("AntiLore.message");
     }
+
     public List<String> getDeadMessages() {
         return getConfig().getStringList("Dead.message");
     }
